@@ -18,11 +18,13 @@
 /* USER CODE END Header */
 
 /* Includes ------------------------------------------------------------------*/
-#include <nn_MTPA.h>
 #include "main.h"
 #include "stm32f7xx_it.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "nn_MTPA.h"
+#include "nn_Nonlinearity.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -239,14 +241,14 @@ void HAL_TIM_OC_DelayElapsedCallback(TIM_HandleTypeDef *htim)
 			// CC1 전용 코드
 			test_cnt2 +=1;
 
-			/*
-			data[0] = -1.2;
-			data[1] = test_cnt2;
+
+			data[0] = test_cnt2;
+			data[1] = 2.f*test_cnt2;
 			data_trans(data);
-			*/
+
 
 			//nn_input[0] = 100.f;
-			NN_Run(&nn_input[0]);
+			//NN_Run(&nn_input[0]);
 		}
 	}
     END_TICK_MANAGER(ControlTime);
